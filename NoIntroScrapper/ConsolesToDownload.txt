@@ -1,0 +1,3 @@
+        Nintendo_Game_Boy_Color = 47,
+        Nintendo_Nintendo_3DS = 64,
+        
