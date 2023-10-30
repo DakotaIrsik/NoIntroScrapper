@@ -34,7 +34,7 @@ namespace NoIntroScraper
 
         private static async Task<(string Content, double Duration)> FetchGameSite(int systemId, string system, int gameNumber)
         {
-            string url = string.Format(URL_TEMPLATE, system, gameNumber);
+            string url = string.Format(URL_TEMPLATE, systemId, gameNumber);
             var stopwatch = Stopwatch.StartNew();
             try
             {
