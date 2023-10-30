@@ -7,7 +7,7 @@ namespace NoIntroScraper
     class Program
     {
         private static readonly HttpClient httpClient = new HttpClient() { Timeout = TimeSpan.FromMilliseconds(MAX_TIMEOUT_IN_MS) };
-        private const int MAX_GAMES_TO_POLL = 50;
+        private const int MAX_GAMES_TO_POLL = 3;
         private const int MAX_TIMEOUT_IN_MS = 5000;
         private const string URL_TEMPLATE = "https://datomatic.no-intro.org/index.php?page=show_record&s={0}&n={1:D4}";
         private static string TEMPORARY_FILENAME_TEMPLATE = "{0}-Temp-{1}.json";
@@ -206,6 +206,7 @@ namespace NoIntroScraper
                             {
                                 game["Duration"] = Math.Round(duration, 1);
                                 game["ConsoleName"] = system;
+                                game["UpdatedOn"] = DateTime.UtcNow;
                                 writer.WriteLine($"{JsonConvert.SerializeObject(game)}");
                                 LogStatus(system, systemId, gameId, GameStatus.Success, duration); // Adjust as needed
                                 writer.Flush();
