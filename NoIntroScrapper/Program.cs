@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -8,7 +8,7 @@ namespace NoIntroScraper
     {
         private static readonly HttpClient httpClient = new HttpClient() { Timeout = TimeSpan.FromMilliseconds(MAX_TIMEOUT_IN_MS) };
         private const int MAX_GAMES_TO_POLL = 50;
-        private const int MAX_TIMEOUT_IN_MS = 20000;
+        private const int MAX_TIMEOUT_IN_MS = 5000;
         private const string URL_TEMPLATE = "https://datomatic.no-intro.org/index.php?page=show_record&s={0}&n={1:D4}";
         private static string TEMPORARY_FILENAME_TEMPLATE = "{0}-Temp-{1}.json";
         private const string FINAL_FILENAME_TEMPLATE = "{0}-Final.json";
@@ -154,7 +154,7 @@ namespace NoIntroScraper
                 var match = Regex.Match(robotsTxt, @"Crawl-delay:\s*(\d+)");
                 if (match.Success)
                 {
-                    return int.Parse(match.Groups[1].Value) * 1000/* Convert to milliseconds*/  * 2 /*already got banned ban */;
+                    return int.Parse(match.Groups[1].Value) * 1000/* Convert to milliseconds*/;
                 }
             }
             catch
